@@ -44,7 +44,7 @@ def create_city(state_id):
     print(f"Debug: Retrieved state with ID {state_id} - Found: {bool(state)}")  # Debugging line
     if not state:
         abort(404)
-    if not request.json:
+    if not request.is_json:
         abort(400, description="Not a JSON")
     if "name" not in request.json:
         abort(400, description="Missing name")
