@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """
 The `app_views` module contains the views for the API's version 1.
 
