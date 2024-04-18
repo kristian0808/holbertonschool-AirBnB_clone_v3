@@ -8,20 +8,19 @@ from models.state import State
 from flask import jsonify, abort, request
 
 
-@app_views.route("/states/<state_id>/cities", methods=["GET"], strict_slashes=False)
+@app_views.route("/states/<state_id>/cities", methods=["GET"],
+                 strict_slashes=False)
 def retrieves_all_cities(state_id):
     """Returns the list of all City objects"""
     state = storage.get(State, state_id)
     if not state:
         abort(404)
-    cities = state.cities
-    cities_list = []
-    for city in cities:
-        cities_list.append(city.to_dict())
+    cities_list = [city.to_dict() for city in state.cities]
     return jsonify(cities_list)
 
 
-@app_views.route("/cities/<city_id>", methods=["GET"], strict_slashes=False)
+@app_views.route("/cities/<city_id>", methods=["GET"],
+                 strict_slashes=False)
 def get_city(city_id):
     """Returns an object by id"""
     city = storage.get(City, city_id)
@@ -41,7 +40,8 @@ def delete_city(city_id):
     return jsonify({}), 200
 
 
-@app_views.route("/states/<state_id>/cities", methods=["POST"], strict_slashes=False)
+@app_views.route("/states/<state_id>/cities", methods=["POST"],
+                 strict_slashes=False)
 def create_city(state_id):
     """Creates an object"""
     city_data = request.get_json()
