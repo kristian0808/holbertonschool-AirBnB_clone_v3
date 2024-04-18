@@ -41,6 +41,7 @@ def delete_city(city_id):
 def create_city(state_id):
     """Creates a City"""
     state = storage.get(State, state_id)
+    print(f"Debug: Retrieved state with ID {state_id} - Found: {bool(state)}")  # Debugging line
     if not state:
         abort(404)
     if not request.json:
