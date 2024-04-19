@@ -10,3 +10,4 @@ from .amenities import *
 from .users import *
 from .places import *
 from .index import *
+from .places_reviews import *
